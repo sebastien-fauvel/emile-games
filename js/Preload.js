@@ -15,6 +15,7 @@ TopDownGame.Preload.prototype = {
         //load game assets
         this.load.tilemap('wiese', 'assets/tilemaps/wiese.json', null, Phaser.Tilemap.TILED_JSON);
         this.load.tilemap('haus', 'assets/tilemaps/haus.json', null, Phaser.Tilemap.TILED_JSON);
+        this.load.tilemap('strand', 'assets/tilemaps/strand.json', null, Phaser.Tilemap.TILED_JSON);
         this.load.image('images-du-monde', 'assets/images/images-du-monde.png');
         this.load.image('images-dans-la-maison', 'assets/images/images-dans-la-maison.gif');
         this.load.image('16x16', 'assets/images/16x16.gif');

@@ -31,12 +31,12 @@ TopDownGame.Game.prototype = {
             playerStart = {x: result[0].x, y: result[0].y};
         }
         this.player = this.game.add.sprite(playerStart.x, playerStart.y, 'link-marche');
+        this.game.physics.arcade.enable(this.player);
+        this.game.camera.follow(this.player);
         this.player.animations.add('left', [0, 1], 10, true);
         this.player.animations.add('down', [2, 3], 10, true);
         this.player.animations.add('up', [4, 5], 10, true);
         this.player.animations.add('right', [6, 7], 10, true);
-        this.game.physics.arcade.enable(this.player);
-        this.game.camera.follow(this.player);
     },
     create: function () {
         this.loadMap('wiese');
@@ -104,26 +104,29 @@ TopDownGame.Game.prototype = {
 
         this.player.body.velocity.x = 0;
         this.player.body.velocity.y = 0;
+        var animation = null;
 
         if (this.cursors.up.isDown) {
             this.player.body.velocity.y = -50;
-            this.player.animations.play('up');
+            animation = 'up';
         }
         else if (this.cursors.down.isDown) {
             this.player.body.velocity.y = 50;
-            this.player.animations.play('down');
+            animation = 'down';
         }
-        else if (this.cursors.left.isDown) {
+        if (this.cursors.left.isDown) {
             this.player.body.velocity.x = -50;
-            this.player.animations.play('left');
+            animation = 'left';
         }
         else if (this.cursors.right.isDown) {
             this.player.body.velocity.x = 50;
-            this.player.animations.play('right');
+            animation = 'right';
+        }
+        if (null !== animation) {
+            this.player.animations.play(animation);
         }
         else {
             this.player.animations.stop();
-            this.player.frame = 2;
         }
     },
     collect: function (player, collectable) {
@@ -138,7 +141,15 @@ TopDownGame.Game.prototype = {
         this.blockedLayer.destroy();
         this.items.destroy();
         this.doors.destroy();
+        var targetX = this.player.position.x;
+        var targetY = this.player.position.y;
+        if ('undefined' !== typeof door.targetX) {
+            targetX = door.targetX;
+        }
+        if ('undefined' !== typeof door.targetY) {
+            targetY = door.targetY;
+        }
         this.player.destroy();
-        this.loadMap(door.targetTilemap, {x: door.targetX, y: door.targetY});
+        this.loadMap(door.targetTilemap, {x: targetX, y: targetY});
     }
 };

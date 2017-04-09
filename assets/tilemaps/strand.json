@@ -1,7 +1,7 @@
 { "height":8,
  "layers":[
         {
-         "data":[140, 232, 177, 178, 227, 209, 70, 71, 72, 120, 241, 243, 201, 202, 209, 209, 94, 95, 96, 144, 0, 0, 0, 10, 11, 12, 118, 119, 119, 120, 0, 0, 0, 34, 35, 36, 141, 142, 143, 144, 0, 52, 0, 58, 52, 58, 165, 166, 167, 168, 256, 329, 216, 216, 210, 268, 269, 254, 216, 233, 216, 216, 216, 140, 216, 292, 293, 140, 233, 232, 216, 216, 216, 216, 216, 282, 282, 216, 216, 216],
+         "data":[216, 216, 216, 216, 216, 371, 216, 216, 216, 216, 0, 0, 216, 216, 216, 371, 216, 216, 216, 216, 0, 0, 0, 0, 0, 371, 0, 0, 0, 0, 0, 0, 0, 247, 247, 371, 371, 0, 0, 0, 0, 0, 247, 247, 247, 247, 0, 0, 0, 0, 247, 247, 247, 247, 247, 247, 0, 0, 0, 0, 247, 247, 247, 248, 247, 247, 247, 247, 247, 247, 384, 384, 384, 384, 384, 384, 384, 384, 384, 384],
          "height":8,
          "name":"backgroundLayer",
          "opacity":1,
@@ -12,7 +12,7 @@
          "y":0
         }, 
         {
-         "data":[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 19, 20, 21, 0, 0, 0, 0, 0, 0, 0, 43, 44, 45, 0, 0, 0, 0, 0, 0, 0, 50, 0, 50, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 209, 0, 0],
+         "data":[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 179, 132, 0, 0, 0, 0, 0, 0, 0, 0, 203, 204, 275, 275, 276, 0, 270, 275, 275, 267, 179, 132, 163, 0, 0, 0, 0, 209, 209, 291, 155, 156, 0, 0, 0, 0, 289, 209, 192, 291, 0, 0, 227, 0, 0, 0, 313, 314, 314, 315, 0, 0, 0, 0, 0, 0, 227, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
          "height":8,
          "name":"blockedLayer",
          "opacity":1,
@@ -28,60 +28,13 @@
          "name":"objectsLayer",
          "objects":[
                 {
-                 "gid":139,
                  "height":16,
                  "id":1,
                  "name":"",
                  "properties":
                     {
-                     "sprite":"player",
-                     "type":"playerStart"
-                    },
-                 "propertytypes":
-                    {
-                     "sprite":"string",
-                     "type":"string"
-                    },
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":16,
-                 "x":16,
-                 "y":127
-                }, 
-                {
-                 "height":16,
-                 "id":5,
-                 "name":"",
-                 "properties":
-                    {
-                     "targetTilemap":"haus",
-                     "targetX":72,
-                     "targetY":111,
-                     "type":"door"
-                    },
-                 "propertytypes":
-                    {
-                     "targetTilemap":"string",
-                     "targetX":"int",
-                     "targetY":"int",
-                     "type":"string"
-                    },
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":16,
-                 "x":16,
-                 "y":49
-                }, 
-                {
-                 "height":16,
-                 "id":6,
-                 "name":"",
-                 "properties":
-                    {
-                     "targetTilemap":"strand",
-                     "targetY":0,
+                     "targetTilemap":"wiese",
+                     "targetY":112,
                      "type":"door"
                     },
                  "propertytypes":
@@ -95,16 +48,16 @@
                  "visible":true,
                  "width":16,
                  "x":0,
-                 "y":130
+                 "y":-18
                 }, 
                 {
                  "height":16,
-                 "id":7,
+                 "id":3,
                  "name":"",
                  "properties":
                     {
-                     "targetTilemap":"strand",
-                     "targetY":0,
+                     "targetTilemap":"wiese",
+                     "targetY":112,
                      "type":"door"
                     },
                  "propertytypes":
@@ -118,16 +71,16 @@
                  "visible":true,
                  "width":16,
                  "x":16,
-                 "y":130
+                 "y":-18
                 }, 
                 {
                  "height":16,
-                 "id":8,
+                 "id":4,
                  "name":"",
                  "properties":
                     {
-                     "targetTilemap":"strand",
-                     "targetY":0,
+                     "targetTilemap":"wiese",
+                     "targetY":112,
                      "type":"door"
                     },
                  "propertytypes":
@@ -141,16 +94,16 @@
                  "visible":true,
                  "width":16,
                  "x":32,
-                 "y":130
+                 "y":-18
                 }, 
                 {
                  "height":16,
-                 "id":9,
+                 "id":5,
                  "name":"",
                  "properties":
                     {
-                     "targetTilemap":"strand",
-                     "targetY":0,
+                     "targetTilemap":"wiese",
+                     "targetY":112,
                      "type":"door"
                     },
                  "propertytypes":
@@ -164,16 +117,16 @@
                  "visible":true,
                  "width":16,
                  "x":48,
-                 "y":130
+                 "y":-18
                 }, 
                 {
                  "height":16,
-                 "id":16,
+                 "id":6,
                  "name":"",
                  "properties":
                     {
-                     "targetTilemap":"strand",
-                     "targetY":0,
+                     "targetTilemap":"wiese",
+                     "targetY":112,
                      "type":"door"
                     },
                  "propertytypes":
@@ -187,16 +140,16 @@
                  "visible":true,
                  "width":16,
                  "x":64,
-                 "y":130
+                 "y":-18
                 }, 
                 {
                  "height":16,
-                 "id":17,
+                 "id":7,
                  "name":"",
                  "properties":
                     {
-                     "targetTilemap":"strand",
-                     "targetY":0,
+                     "targetTilemap":"wiese",
+                     "targetY":112,
                      "type":"door"
                     },
                  "propertytypes":
@@ -210,16 +163,16 @@
                  "visible":true,
                  "width":16,
                  "x":80,
-                 "y":130
+                 "y":-18
                 }, 
                 {
                  "height":16,
-                 "id":18,
+                 "id":8,
                  "name":"",
                  "properties":
                     {
-                     "targetTilemap":"strand",
-                     "targetY":0,
+                     "targetTilemap":"wiese",
+                     "targetY":112,
                      "type":"door"
                     },
                  "propertytypes":
@@ -233,16 +186,16 @@
                  "visible":true,
                  "width":16,
                  "x":96,
-                 "y":130
+                 "y":-18
                 }, 
                 {
                  "height":16,
-                 "id":19,
+                 "id":9,
                  "name":"",
                  "properties":
                     {
-                     "targetTilemap":"strand",
-                     "targetY":0,
+                     "targetTilemap":"wiese",
+                     "targetY":112,
                      "type":"door"
                     },
                  "propertytypes":
@@ -256,16 +209,16 @@
                  "visible":true,
                  "width":16,
                  "x":112,
-                 "y":130
+                 "y":-18
                 }, 
                 {
                  "height":16,
-                 "id":20,
+                 "id":10,
                  "name":"",
                  "properties":
                     {
-                     "targetTilemap":"strand",
-                     "targetY":0,
+                     "targetTilemap":"wiese",
+                     "targetY":112,
                      "type":"door"
                     },
                  "propertytypes":
@@ -279,16 +232,16 @@
                  "visible":true,
                  "width":16,
                  "x":128,
-                 "y":130
+                 "y":-18
                 }, 
                 {
                  "height":16,
-                 "id":21,
+                 "id":11,
                  "name":"",
                  "properties":
                     {
-                     "targetTilemap":"strand",
-                     "targetY":0,
+                     "targetTilemap":"wiese",
+                     "targetY":112,
                      "type":"door"
                     },
                  "propertytypes":
@@ -302,24 +255,16 @@
                  "visible":true,
                  "width":16,
                  "x":144,
-                 "y":130
+                 "y":-18
                 }],
          "opacity":1,
-         "properties":
-            {
-             "type":"door"
-            },
-         "propertytypes":
-            {
-             "type":"string"
-            },
          "type":"objectgroup",
          "visible":true,
          "width":10,
          "x":0,
          "y":0
         }],
- "nextobjectid":22,
+ "nextobjectid":12,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tileheight":16,
