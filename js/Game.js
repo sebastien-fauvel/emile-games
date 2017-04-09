@@ -30,7 +30,11 @@ TopDownGame.Game.prototype = {
             var result = this.findObjectsByType('playerStart', this.map, 'objectsLayer');
             playerStart = {x: result[0].x, y: result[0].y};
         }
-        this.player = this.game.add.sprite(playerStart.x, playerStart.y, 'player');
+        this.player = this.game.add.sprite(playerStart.x, playerStart.y, 'link-marche');
+        this.player.animations.add('left', [0, 1], 10, true);
+        this.player.animations.add('down', [2, 3], 10, true);
+        this.player.animations.add('up', [4, 5], 10, true);
+        this.player.animations.add('right', [6, 7], 10, true);
         this.game.physics.arcade.enable(this.player);
         this.game.camera.follow(this.player);
     },
@@ -99,23 +103,27 @@ TopDownGame.Game.prototype = {
         //player movement
 
         this.player.body.velocity.x = 0;
+        this.player.body.velocity.y = 0;
 
         if (this.cursors.up.isDown) {
-            if (this.player.body.velocity.y == 0)
-                this.player.body.velocity.y -= 50;
+            this.player.body.velocity.y = -50;
+            this.player.animations.play('up');
         }
         else if (this.cursors.down.isDown) {
-            if (this.player.body.velocity.y == 0)
-                this.player.body.velocity.y += 50;
+            this.player.body.velocity.y = 50;
+            this.player.animations.play('down');
         }
-        else {
-            this.player.body.velocity.y = 0;
-        }
-        if (this.cursors.left.isDown) {
-            this.player.body.velocity.x -= 50;
+        else if (this.cursors.left.isDown) {
+            this.player.body.velocity.x = -50;
+            this.player.animations.play('left');
         }
         else if (this.cursors.right.isDown) {
-            this.player.body.velocity.x += 50;
+            this.player.body.velocity.x = 50;
+            this.player.animations.play('right');
+        }
+        else {
+            this.player.animations.stop();
+            this.player.frame = 2;
         }
     },
     collect: function (player, collectable) {

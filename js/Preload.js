@@ -18,6 +18,7 @@ TopDownGame.Preload.prototype = {
         this.load.image('images-du-monde', 'assets/images/images-du-monde.png');
         this.load.image('images-dans-la-maison', 'assets/images/images-dans-la-maison.gif');
         this.load.image('16x16', 'assets/images/16x16.gif');
+        this.load.spritesheet('link-marche', 'assets/images/link-marche.png', 15, 16);
         this.load.tilemap('level1', 'assets/tilemaps/level1.json', null, Phaser.Tilemap.TILED_JSON);
         this.load.image('gameTiles', 'assets/images/tiles.png');
         this.load.image('greencup', 'assets/images/greencup.png');
