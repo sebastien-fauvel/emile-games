@@ -15,7 +15,7 @@ TopDownGame.Game.prototype = {
     this.blockedLayer = this.map.createLayer('blockedLayer');
 
     //collision on blockedLayer
-    this.map.setCollisionBetween(1, 100000, true, 'blockedLayer');
+    this.map.setCollisionBetween(1, 2000, true, 'blockedLayer');
 
     //resizes the game world to match the layer dimensions
     this.backgroundlayer.resizeWorld();
@@ -86,14 +86,19 @@ TopDownGame.Game.prototype = {
     this.game.physics.arcade.overlap(this.player, this.doors, this.enterDoor, null, this);
 
     //player movement
-    this.player.body.velocity.y = 0;
+    
     this.player.body.velocity.x = 0;
 
     if(this.cursors.up.isDown) {
+      if(this.player.body.velocity.y == 0)
       this.player.body.velocity.y -= 50;
     }
     else if(this.cursors.down.isDown) {
+      if(this.player.body.velocity.y == 0)
       this.player.body.velocity.y += 50;
+    }
+    else {
+      this.player.body.velocity.y = 0;
     }
     if(this.cursors.left.isDown) {
       this.player.body.velocity.x -= 50;
