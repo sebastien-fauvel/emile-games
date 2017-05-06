@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="10" height="8" tilewidth="16" tileheight="16" nextobjectid="12">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="10" height="8" tilewidth="16" tileheight="16" nextobjectid="18">
  <tileset firstgid="1" name="images-du-monde" tilewidth="16" tileheight="16" spacing="1" margin="1" tilecount="600" columns="24">
   <image source="../images/images-du-monde.png" width="410" height="427"/>
+ </tileset>
+ <tileset firstgid="601" name="objets" tilewidth="16" tileheight="16" spacing="1" margin="1" tilecount="448" columns="28">
+  <image source="../images/objets.png" width="478" height="285"/>
  </tileset>
  <layer name="backgroundLayer" width="10" height="8">
   <data encoding="csv">
@@ -10,7 +13,7 @@
 0,0,0,0,0,371,0,0,0,0,
 0,0,0,247,247,371,371,0,0,0,
 0,0,247,247,247,247,0,0,0,0,
-247,247,247,247,247,247,0,0,0,0,
+247,247,247,247,223,247,0,0,0,0,
 247,247,247,248,247,247,247,247,247,247,
 384,384,384,384,384,384,384,384,384,384
 </data>
@@ -28,74 +31,28 @@
 </data>
  </layer>
  <objectgroup name="objectsLayer">
-  <object id="1" x="0" y="-18" width="16" height="16">
+  <object id="1" x="-18" y="0" width="16" height="128">
    <properties>
-    <property name="targetTilemap" value="wiese"/>
-    <property name="targetY" type="int" value="112"/>
+    <property name="targetTilemap" value="strand2"/>
+    <property name="targetX" type="int" value="144"/>
     <property name="type" value="door"/>
    </properties>
   </object>
-  <object id="3" x="16" y="-18" width="16" height="16">
+  <object id="15" x="0" y="-18" width="160" height="16">
    <properties>
     <property name="targetTilemap" value="wiese"/>
-    <property name="targetY" type="int" value="112"/>
+    <property name="targetY" type="int" value="111"/>
     <property name="type" value="door"/>
    </properties>
   </object>
-  <object id="4" x="32" y="-18" width="16" height="16">
+  <object id="16" x="0" y="128" width="160" height="16">
    <properties>
-    <property name="targetTilemap" value="wiese"/>
-    <property name="targetY" type="int" value="112"/>
-    <property name="type" value="door"/>
+    <property name="type" value="boundary"/>
    </properties>
   </object>
-  <object id="5" x="48" y="-18" width="16" height="16">
+  <object id="17" x="160" y="-1.77636e-15" width="16" height="128">
    <properties>
-    <property name="targetTilemap" value="wiese"/>
-    <property name="targetY" type="int" value="112"/>
-    <property name="type" value="door"/>
-   </properties>
-  </object>
-  <object id="6" x="64" y="-18" width="16" height="16">
-   <properties>
-    <property name="targetTilemap" value="wiese"/>
-    <property name="targetY" type="int" value="112"/>
-    <property name="type" value="door"/>
-   </properties>
-  </object>
-  <object id="7" x="80" y="-18" width="16" height="16">
-   <properties>
-    <property name="targetTilemap" value="wiese"/>
-    <property name="targetY" type="int" value="112"/>
-    <property name="type" value="door"/>
-   </properties>
-  </object>
-  <object id="8" x="96" y="-18" width="16" height="16">
-   <properties>
-    <property name="targetTilemap" value="wiese"/>
-    <property name="targetY" type="int" value="112"/>
-    <property name="type" value="door"/>
-   </properties>
-  </object>
-  <object id="9" x="112" y="-18" width="16" height="16">
-   <properties>
-    <property name="targetTilemap" value="wiese"/>
-    <property name="targetY" type="int" value="112"/>
-    <property name="type" value="door"/>
-   </properties>
-  </object>
-  <object id="10" x="128" y="-18" width="16" height="16">
-   <properties>
-    <property name="targetTilemap" value="wiese"/>
-    <property name="targetY" type="int" value="112"/>
-    <property name="type" value="door"/>
-   </properties>
-  </object>
-  <object id="11" x="144" y="-18" width="16" height="16">
-   <properties>
-    <property name="targetTilemap" value="wiese"/>
-    <property name="targetY" type="int" value="112"/>
-    <property name="type" value="door"/>
+    <property name="type" value="boundary"/>
    </properties>
   </object>
  </objectgroup>

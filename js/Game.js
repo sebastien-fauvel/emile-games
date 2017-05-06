@@ -24,13 +24,18 @@ TopDownGame.Game.prototype = {
 
         this.createItems();
         this.createDoors();
+        this.createBoundaries();
 
         //create player
-        if ('undefined' === typeof playerStart) {
+        var createPlayerFromTile = ('undefined' === typeof playerStart);
+        if (createPlayerFromTile) {
             var result = this.findObjectsByType('playerStart', this.map, 'objectsLayer');
             playerStart = {x: result[0].x, y: result[0].y};
         }
         this.player = this.game.add.sprite(playerStart.x, playerStart.y, 'link-marche');
+        if (createPlayerFromTile) {
+            this.player.y -= this.player.texture.height;
+        }
         this.game.physics.arcade.enable(this.player);
         this.game.camera.follow(this.player);
         this.player.animations.add('left', [0, 1], 10, true);
@@ -62,16 +67,23 @@ TopDownGame.Game.prototype = {
             this.createFromTiledObject(element, this.doors);
         }, this);
     },
+    createBoundaries: function () {
+        //create boundaries
+        this.boundaries = this.game.add.group();
+        this.boundaries.enableBody = true;
+        result = this.findObjectsByType('boundary', this.map, 'objectsLayer');
+
+        result.forEach(function (element) {
+            var sprite = this.createFromTiledObject(element, this.boundaries);
+            sprite.body.immovable = true;
+        }, this);
+    },
 
     //find objects in a Tiled layer that containt a property called "type" equal to a certain value
     findObjectsByType: function (type, map, layer) {
-        var result = new Array();
+        var result = [];
         map.objects[layer].forEach(function (element) {
             if (element.properties.type === type) {
-                //Phaser uses top left, Tiled bottom left so we have to adjust
-                //also keep in mind that the cup images are a bit smaller than the tile which is 16x16
-                //so they might not be placed in the exact position as in Tiled
-                element.y -= map.tileHeight;
                 result.push(element);
             }
         });
@@ -82,14 +94,19 @@ TopDownGame.Game.prototype = {
         var sprite;
         if ('undefined' !== typeof element.properties.sprite) {
             sprite = group.create(element.x, element.y, element.properties.sprite);
+            sprite.y -= sprite.texture.height;
         } else {
-            sprite = group.create(element.x, element.y + this.map.tileHeight, '16x16');
+            sprite = group.create(element.x, element.y, '16x16');
+            sprite.enableBody = true;
+            sprite.body.width = element.width;
+            sprite.body.height = element.height;
         }
 
         //copy all properties to the sprite
         Object.keys(element.properties).forEach(function (key) {
             sprite[key] = element.properties[key];
         });
+        return sprite;
     },
     update: function () {
         if (!this.player) {
@@ -97,6 +114,7 @@ TopDownGame.Game.prototype = {
         }
         //collision
         this.game.physics.arcade.collide(this.player, this.blockedLayer);
+        this.game.physics.arcade.collide(this.player, this.boundaries);
         this.game.physics.arcade.overlap(this.player, this.items, this.collect, null, this);
         this.game.physics.arcade.overlap(this.player, this.doors, this.enterDoor, null, this);
 
@@ -130,9 +148,6 @@ TopDownGame.Game.prototype = {
         }
     },
     collect: function (player, collectable) {
-        console.log('yummy!');
-
-        //remove sprite
         collectable.destroy();
     },
     enterDoor: function (player, door) {

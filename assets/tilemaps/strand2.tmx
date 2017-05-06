@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="10" height="8" tilewidth="16" tileheight="16" nextobjectid="20">
+ <tileset firstgid="1" name="images-du-monde" tilewidth="16" tileheight="16" spacing="1" margin="1" tilecount="600" columns="24">
+  <image source="../images/images-du-monde.png" width="410" height="427"/>
+ </tileset>
+ <layer name="backgroundLayer" width="10" height="8">
+  <data encoding="csv">
+0,0,0,0,247,247,247,247,247,247,
+0,549,549,0,0,0,0,0,247,247,
+549,549,549,549,0,0,0,0,247,247,
+549,0,0,0,0,0,247,247,247,247,
+549,0,0,549,0,0,247,0,0,247,
+549,0,0,549,0,0,247,0,0,247,
+549,549,549,549,0,0,0,0,247,248,
+384,384,384,384,384,384,384,384,384,384
+</data>
+ </layer>
+ <layer name="blockedLayer" width="10" height="8">
+  <data encoding="csv">
+279,279,279,279,0,0,0,0,0,0,
+279,0,0,279,265,266,131,132,0,0,
+0,0,0,0,289,209,155,156,0,0,
+0,268,269,254,254,254,0,0,0,0,
+0,292,293,0,254,254,0,131,132,0,
+0,340,341,0,289,209,0,155,156,0,
+0,0,0,0,313,314,314,315,0,0,
+0,0,0,0,0,0,0,0,0,0
+</data>
+ </layer>
+ <objectgroup name="objectsLayer">
+  <object id="13" x="0" y="128" width="160" height="16">
+   <properties>
+    <property name="type" value="boundary"/>
+   </properties>
+  </object>
+  <object id="15" x="162" y="0" width="16" height="128">
+   <properties>
+    <property name="targetTilemap" value="strand"/>
+    <property name="targetX" type="int" value="0"/>
+    <property name="type" value="door"/>
+   </properties>
+  </object>
+  <object id="16" x="-1.42109e-14" y="-16" width="160" height="16">
+   <properties>
+    <property name="type" value="boundary"/>
+   </properties>
+  </object>
+  <object id="17" x="-16" y="0" width="16" height="128">
+   <properties>
+    <property name="type" value="boundary"/>
+   </properties>
+  </object>
+  <object id="19" x="160" y="16" width="16" height="64">
+   <properties>
+    <property name="type" value="boundary"/>
+   </properties>
+  </object>
+ </objectgroup>
+</map>
