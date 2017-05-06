@@ -36,7 +36,7 @@
   <properties>
    <property name="type" value="door"/>
   </properties>
-  <object id="1" gid="139" x="16" y="112" width="16" height="16">
+  <object id="1" gid="139" x="16" y="128" width="16" height="16">
    <properties>
     <property name="sprite" value="player"/>
     <property name="type" value="playerStart"/>

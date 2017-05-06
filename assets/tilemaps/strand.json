@@ -110,6 +110,25 @@
                  "width":16,
                  "x":160,
                  "y":-1.77635683940025e-15
+                }, 
+                {
+                 "height":16,
+                 "id":18,
+                 "name":"",
+                 "properties":
+                    {
+                     "type":"boundary"
+                    },
+                 "propertytypes":
+                    {
+                     "type":"string"
+                    },
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":16,
+                 "x":112,
+                 "y":-16
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -118,7 +137,7 @@
          "x":0,
          "y":0
         }],
- "nextobjectid":18,
+ "nextobjectid":19,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tileheight":16,

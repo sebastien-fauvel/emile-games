@@ -25,8 +25,38 @@ TopDownGame.Game.prototype = {
         this.createItems();
         this.createDoors();
         this.createBoundaries();
-
-        //create player
+        this.createPlayer(playerStart);
+    },
+    create: function () {
+        this.loadMap('wiese');
+        this.cursors = this.game.input.keyboard.createCursorKeys();
+    },
+    createItems: function () {
+        this.items = this.game.add.group();
+        this.items.enableBody = true;
+        result = this.findObjectsByType('item', this.map, 'objectsLayer');
+        result.forEach(function (element) {
+            this.createFromTiledObject(element, this.items);
+        }, this);
+    },
+    createDoors: function () {
+        this.doors = this.game.add.group();
+        this.doors.enableBody = true;
+        result = this.findObjectsByType('door', this.map, 'objectsLayer');
+        result.forEach(function (element) {
+            this.createFromTiledObject(element, this.doors);
+        }, this);
+    },
+    createBoundaries: function () {
+        this.boundaries = this.game.add.group();
+        this.boundaries.enableBody = true;
+        result = this.findObjectsByType('boundary', this.map, 'objectsLayer');
+        result.forEach(function (element) {
+            var sprite = this.createFromTiledObject(element, this.boundaries);
+            sprite.body.immovable = true;
+        }, this);
+    },
+    createPlayer: function (playerStart) {
         var createPlayerFromTile = ('undefined' === typeof playerStart);
         if (createPlayerFromTile) {
             var result = this.findObjectsByType('playerStart', this.map, 'objectsLayer');
@@ -43,43 +73,6 @@ TopDownGame.Game.prototype = {
         this.player.animations.add('up', [4, 5], 10, true);
         this.player.animations.add('right', [6, 7], 10, true);
     },
-    create: function () {
-        this.loadMap('wiese');
-        this.cursors = this.game.input.keyboard.createCursorKeys();
-    },
-    createItems: function () {
-        //create items
-        this.items = this.game.add.group();
-        this.items.enableBody = true;
-        var item;
-        result = this.findObjectsByType('item', this.map, 'objectsLayer');
-        result.forEach(function (element) {
-            this.createFromTiledObject(element, this.items);
-        }, this);
-    },
-    createDoors: function () {
-        //create doors
-        this.doors = this.game.add.group();
-        this.doors.enableBody = true;
-        result = this.findObjectsByType('door', this.map, 'objectsLayer');
-
-        result.forEach(function (element) {
-            this.createFromTiledObject(element, this.doors);
-        }, this);
-    },
-    createBoundaries: function () {
-        //create boundaries
-        this.boundaries = this.game.add.group();
-        this.boundaries.enableBody = true;
-        result = this.findObjectsByType('boundary', this.map, 'objectsLayer');
-
-        result.forEach(function (element) {
-            var sprite = this.createFromTiledObject(element, this.boundaries);
-            sprite.body.immovable = true;
-        }, this);
-    },
-
-    //find objects in a Tiled layer that containt a property called "type" equal to a certain value
     findObjectsByType: function (type, map, layer) {
         var result = [];
         map.objects[layer].forEach(function (element) {
@@ -89,7 +82,6 @@ TopDownGame.Game.prototype = {
         });
         return result;
     },
-    //create a sprite from an object
     createFromTiledObject: function (element, group) {
         var sprite;
         if ('undefined' !== typeof element.properties.sprite) {
@@ -101,50 +93,50 @@ TopDownGame.Game.prototype = {
             sprite.body.width = element.width;
             sprite.body.height = element.height;
         }
-
-        //copy all properties to the sprite
         Object.keys(element.properties).forEach(function (key) {
             sprite[key] = element.properties[key];
         });
         return sprite;
     },
     update: function () {
-        if (!this.player) {
-            return;
+        this.handleCollisions();
+        this.handlePlayerMovement();
+    },
+    handleCollisions: function () {
+        if (this.player) {
+            this.game.physics.arcade.collide(this.player, this.blockedLayer);
+            this.game.physics.arcade.collide(this.player, this.boundaries);
+            this.game.physics.arcade.overlap(this.player, this.items, this.collect, null, this);
+            this.game.physics.arcade.overlap(this.player, this.doors, this.enterDoor, null, this);
         }
-        //collision
-        this.game.physics.arcade.collide(this.player, this.blockedLayer);
-        this.game.physics.arcade.collide(this.player, this.boundaries);
-        this.game.physics.arcade.overlap(this.player, this.items, this.collect, null, this);
-        this.game.physics.arcade.overlap(this.player, this.doors, this.enterDoor, null, this);
-
-        //player movement
-
-        this.player.body.velocity.x = 0;
-        this.player.body.velocity.y = 0;
-        var animation = null;
-
-        if (this.cursors.up.isDown) {
-            this.player.body.velocity.y = -50;
-            animation = 'up';
-        }
-        else if (this.cursors.down.isDown) {
-            this.player.body.velocity.y = 50;
-            animation = 'down';
-        }
-        if (this.cursors.left.isDown) {
-            this.player.body.velocity.x = -50;
-            animation = 'left';
-        }
-        else if (this.cursors.right.isDown) {
-            this.player.body.velocity.x = 50;
-            animation = 'right';
-        }
-        if (null !== animation) {
-            this.player.animations.play(animation);
-        }
-        else {
-            this.player.animations.stop();
+    },
+    handlePlayerMovement: function () {
+        if (this.player) {
+            this.player.body.velocity.x = 0;
+            this.player.body.velocity.y = 0;
+            var animation = null;
+            if (this.cursors.up.isDown) {
+                this.player.body.velocity.y = -50;
+                animation = 'up';
+            }
+            else if (this.cursors.down.isDown) {
+                this.player.body.velocity.y = 50;
+                animation = 'down';
+            }
+            if (this.cursors.left.isDown) {
+                this.player.body.velocity.x = -50;
+                animation = 'left';
+            }
+            else if (this.cursors.right.isDown) {
+                this.player.body.velocity.x = 50;
+                animation = 'right';
+            }
+            if (null !== animation) {
+                this.player.animations.play(animation);
+            }
+            else {
+                this.player.animations.stop();
+            }
         }
     },
     collect: function (player, collectable) {
@@ -156,6 +148,7 @@ TopDownGame.Game.prototype = {
         this.blockedLayer.destroy();
         this.items.destroy();
         this.doors.destroy();
+        this.boundaries.destroy();
         var targetX = this.player.position.x;
         var targetY = this.player.position.y;
         if ('undefined' !== typeof door.targetX) {
