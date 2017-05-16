@@ -30,6 +30,7 @@ TopDownGame.Game.prototype = {
     create: function () {
         this.loadMap('wiese');
         this.cursors = this.game.input.keyboard.createCursorKeys();
+        this.diamantenUndRubinenAnzeigen();
     },
     createItems: function () {
         this.items = this.game.add.group();
@@ -72,6 +73,11 @@ TopDownGame.Game.prototype = {
         this.player.animations.add('down', [2, 3], 10, true);
         this.player.animations.add('up', [4, 5], 10, true);
         this.player.animations.add('right', [6, 7], 10, true);
+    },
+    diamantenUndRubinenAnzeigen: function () {
+        this.game.add.sprite(5 * 16, 8 * 16 + 3, 'diamant');
+        this.diamanten = 0;
+        this.diamantenAnzeige = this.game.add.text(5 * 16 + 10, 8 * 16, 0, {font: '16px'});
     },
     findObjectsByType: function (type, map, layer) {
         var result = [];
@@ -141,6 +147,8 @@ TopDownGame.Game.prototype = {
     },
     collect: function (player, collectable) {
         collectable.destroy();
+        this.diamanten++;
+        this.diamantenAnzeige.setText(this.diamanten);
     },
     enterDoor: function (player, door) {
         this.map.removeAllLayers();
