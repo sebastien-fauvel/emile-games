@@ -141,6 +141,8 @@ TopDownGame.Game.prototype = {
                 this.player.animations.play(animation);
             }
             else {
+                this.player.body.x = Math.round(this.player.body.x / 8) * 8;
+                this.player.body.y = Math.round(this.player.body.y / 8) * 8;
                 this.player.animations.stop();
             }
         }
